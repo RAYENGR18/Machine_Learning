@@ -1,30 +1,57 @@
-# Predictina — End-to-End House Price Prediction
+# Predictina — Smart Full-Stack House Price Prediction
 
-Predictina is a production-style ML project that separates preprocessing, training, evaluation, serving, and frontend UI.
+Predictina is a full-stack Machine Learning application for house price prediction. It is designed to be **production-ready**, **flexible for end users**, and **consistent between training and inference**.
 
-## Project Structure
+The project now uses a richer feature set, robust missing value handling, model comparison (RandomForest, XGBoost, LightGBM), and MLflow model tracking/registry.
+
+---
+
+## 📌 What Predictina does
+
+Predictina predicts Tunisian house prices while handling partial user inputs intelligently.
+
+### Key capabilities
+- Uses core and contextual features:
+  - `surface`, `rooms`, `bathrooms`, `location`, `city`, `property_type`, `floor`, `total_floors`, `parking`, `has_garden`, `has_pool`, `year_built`
+- Automatically handles missing data:
+  - Numerical: skew-aware imputation (mean/median)
+  - Categorical: most frequent / `unknown`
+  - Boolean: defaults to `False`
+  - Correlation logic: infers values like bathrooms from rooms
+- Ensures strict train/serve consistency using one sklearn pipeline
+- Exposes predictions through FastAPI and a React frontend
+
+---
+
+## 🗂️ Project structure
 
 ```text
 predictina/
-├── data/
-├── notebooks/
+│
 ├── src/
 │   ├── preprocessing.py
 │   ├── train.py
+│   ├── pipeline.py
 │   ├── evaluate.py
 │   └── utils.py
-├── models/
-├── mlruns/
+│
 ├── api/
 │   ├── main.py
-│   ├── schema.py
-│   └── model_loader.py
+│   ├── model_loader.py
+│   └── schema.py
+│
+├── models/
+├── mlruns/
 ├── frontend/
+├── data/
+├── notebooks/
 ├── requirements.txt
 └── README.md
 ```
 
-## 1) Install dependencies
+---
+
+## ⚙️ Installation
 
 ```bash
 cd predictina
@@ -33,68 +60,148 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## 2) Train models + track with MLflow
+---
 
-From `predictina/`:
+## 🧠 Training
+
+Train and compare models with MLflow tracking:
 
 ```bash
+cd predictina
 export MLFLOW_TRACKING_URI=file:./mlruns
-python src/train.py --data-path data/house_pricing_raw.csv --experiment-name predictina-house-prices --model-name PredictinaHousePriceModel
+python src/train.py \
+  --data-path data/house_pricing_raw.csv \
+  --experiment-name predictina-house-prices \
+  --model-name PredictinaHousePriceModel
 ```
 
-What happens:
-- Data cleaning and reusable feature engineering are applied.
-- Models are trained and compared: RandomForest, XGBoost, LightGBM.
-- Metrics logged: RMSE, MAE, R².
-- Artifacts logged: feature importance and model comparison chart.
-- Best model is registered and moved to `Production` stage.
+### During training
+- Data cleaning + location/city extraction + region grouping
+- Feature engineering and smart imputation in a reusable pipeline
+- Model comparison:
+  - RandomForest
+  - XGBoost
+  - LightGBM
+- Metrics logged:
+  - RMSE
+  - MAE
+  - R²
+- Artifacts logged:
+  - Feature importance plot
+  - Model comparison chart
+- Best model is registered and promoted to **Production**
 
-## 3) Launch MLflow UI
+---
+
+## 📊 MLflow
+
+Launch the MLflow UI:
 
 ```bash
+cd predictina
 mlflow ui --backend-store-uri ./mlruns --host 0.0.0.0 --port 5000
 ```
 
-Open: `http://localhost:5000`
+Open: http://localhost:5000
 
-## 4) Start FastAPI backend
+Use MLflow to inspect:
+- Parameters and hyperparameters
+- Metrics per model candidate
+- Artifacts (plots, CSV scores)
+- Registered model versions
+
+---
+
+## 🚀 FastAPI backend
+
+Start API server:
 
 ```bash
-cd api
+cd predictina/api
 export MLFLOW_TRACKING_URI=file:../mlruns
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-Prediction endpoint:
+### Health endpoint
+```http
+GET /health
+```
 
+### Prediction endpoint
 ```http
 POST /predict
 Content-Type: application/json
+```
 
+#### Flexible request example (minimal input)
+```json
 {
   "surface": 120,
   "rooms": 3,
-  "bathrooms": 2,
   "location": "Tunis"
 }
 ```
 
-## 5) Start React frontend
+#### Rich request example
+```json
+{
+  "surface": 190,
+  "rooms": 5,
+  "bathrooms": 2,
+  "location": "La Marsa",
+  "city": "Tunis",
+  "property_type": "villa",
+  "floor": 1,
+  "total_floors": 2,
+  "parking": true,
+  "has_garden": true,
+  "has_pool": false,
+  "year_built": 2015
+}
+```
+
+#### Response format
+```json
+{
+  "predicted_price": 250000
+}
+```
+
+---
+
+## 💻 Frontend (React)
 
 ```bash
-cd frontend
+cd predictina/frontend
 npm install
 npm run dev
 ```
 
-Set API URL if needed:
+Optional API URL config:
 
 ```bash
 echo 'VITE_API_URL=http://localhost:8000' > .env
 ```
 
-## Notes on consistency
+---
 
-- The same engineered features are used for training and inference.
-- Preprocessing is handled through sklearn pipeline to avoid leakage.
-- Inference model is loaded from MLflow Production stage.
+## 🔁 Full pipeline (end-to-end)
+
+1. User submits partial house features in frontend.
+2. Frontend calls FastAPI `/predict`.
+3. API loads the registered MLflow Production model.
+4. The same sklearn pipeline used in training is applied at inference:
+   - feature building
+   - intelligent missing value handling
+   - encoding/scaling
+5. Model returns `predicted_price`.
+
+---
+
+## ✅ Notes on production readiness
+
+- Shared train/inference pipeline (no duplicated preprocessing logic)
+- Robust handling of optional API fields
+- Consistent feature schema
+- MLflow tracking + model registry
+- Logging in training and API services

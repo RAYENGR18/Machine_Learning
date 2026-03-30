@@ -28,9 +28,5 @@ class PredictinaModelService:
             raise RuntimeError("Model is not loaded")
 
         frame = pd.DataFrame([features])
-        frame["rooms_per_surface"] = frame["rooms"] / frame["surface"]
-        frame["bathrooms_per_room"] = frame["bathrooms"] / frame["rooms"].replace(0, 1)
-        frame["log_surface"] = frame["surface"].apply(lambda x: __import__("math").log1p(x))
-
         pred = self._model.predict(frame)
         return float(pred[0])

@@ -19,13 +19,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 
 from evaluate import evaluate_regression
-from preprocessing import (
-    TARGET_COL,
-    add_engineered_features,
-    build_preprocessing_pipeline,
-    clean_raw_data,
-    get_feature_lists,
-)
+from pipeline import FeatureSchema, build_training_pipeline
+from preprocessing import DatasetConfig, TARGET_COL, clean_raw_data, get_model_feature_lists
 from utils import ensure_dir, save_json, setup_logging
 
 LOGGER = logging.getLogger(__name__)
@@ -46,7 +41,7 @@ def _candidate_models(random_state: int = 42) -> dict[str, object]:
         from xgboost import XGBRegressor
 
         models["xgboost"] = XGBRegressor(
-            n_estimators=400,
+            n_estimators=500,
             learning_rate=0.05,
             max_depth=6,
             subsample=0.85,
@@ -104,7 +99,7 @@ def _plot_feature_importance(model_pipeline: Pipeline, out_dir: Path, model_name
     importance = np.asarray(reg.feature_importances_)
     order = np.argsort(importance)[-15:]
 
-    plt.figure(figsize=(9, 5))
+    plt.figure(figsize=(10, 5))
     plt.barh(np.array(feature_names)[order], importance[order], color="#10b981")
     plt.title(f"Top Feature Importances - {model_name}")
     plt.tight_layout()
@@ -125,10 +120,10 @@ def run_training(data_path: str, experiment_name: str, model_name: str) -> None:
 
     df_raw = pd.read_csv(data_path)
     df = clean_raw_data(df_raw)
-    df = add_engineered_features(df)
 
-    numeric_features, categorical_features = get_feature_lists()
-    X = df[numeric_features + categorical_features]
+    dataset_cfg = DatasetConfig()
+    input_features = list(dataset_cfg.numeric_features + dataset_cfg.categorical_features + dataset_cfg.boolean_features)
+    X = df[input_features]
     y = df[TARGET_COL]
 
     X_train, X_test, y_train, y_test = train_test_split(
@@ -141,6 +136,13 @@ def run_training(data_path: str, experiment_name: str, model_name: str) -> None:
     candidates = _candidate_models()
     if not candidates:
         raise RuntimeError("No model backends available. Install at least one model package.")
+
+    model_numeric, model_categorical, model_boolean = get_model_feature_lists()
+    schema = FeatureSchema(
+        numeric_features=dataset_cfg.numeric_features,
+        categorical_features=dataset_cfg.categorical_features,
+        boolean_features=dataset_cfg.boolean_features,
+    )
 
     artifacts_dir = ensure_dir("models/artifacts")
     scores = []
@@ -161,12 +163,12 @@ def run_training(data_path: str, experiment_name: str, model_name: str) -> None:
 
         for key, regressor in candidates.items():
             with mlflow.start_run(run_name=key, nested=True):
-                preprocessor = build_preprocessing_pipeline(numeric_features, categorical_features)
-                model_pipeline = Pipeline(
-                    steps=[
-                        ("preprocessor", preprocessor),
-                        ("regressor", regressor),
-                    ]
+                model_pipeline = build_training_pipeline(
+                    regressor=regressor,
+                    schema=schema,
+                    model_numeric_features=model_numeric,
+                    model_categorical_features=model_categorical,
+                    model_boolean_features=model_boolean,
                 )
 
                 model_pipeline.fit(X_train, y_train)
