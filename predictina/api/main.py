@@ -15,7 +15,7 @@ logging.basicConfig(
 )
 LOGGER = logging.getLogger(__name__)
 
-app = FastAPI(title="Predictina API", version="1.0.0")
+app = FastAPI(title="Predictina API", version="2.0.0")
 service = PredictinaModelService()
 
 
@@ -36,7 +36,7 @@ def health() -> dict[str, str]:
 @app.post("/predict", response_model=PredictionResponse)
 def predict(payload: PredictionRequest) -> PredictionResponse:
     try:
-        prediction = service.predict(payload.dict())
+        prediction = service.predict(payload.model_dump(exclude_none=True))
         return PredictionResponse(predicted_price=round(prediction, 2))
     except Exception as exc:
         LOGGER.exception("Prediction error: %s", exc)
