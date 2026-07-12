@@ -1,54 +1,95 @@
 .header {
-  background: var(--ink);
-  color: var(--sand);
-  padding: 2.5rem 3rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
   display: flex;
-  align-items: flex-end;
-  gap: 2rem;
-  border-bottom: 4px solid var(--terracotta);
+  align-items: center;
+  gap: 1.5rem;
+  padding: .85rem clamp(1rem, 4vw, 2.5rem);
+  background: var(--glass);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border-bottom: 1px solid var(--glass-line);
+  box-shadow: var(--shadow-sm);
 }
 
-.logoMark {
-  font-family: 'Syne', sans-serif;
-  font-size: 3.5rem;
-  font-weight: 800;
-  line-height: 1;
-  color: var(--terracotta);
-  letter-spacing: -3px;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  text-decoration: none;
 }
-.logoMark span { color: var(--gold); }
 
+.logo {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  color: var(--teal);
+  filter: drop-shadow(0 2px 6px rgba(15,118,110,.25));
+}
+.logo svg { width: 100%; height: 100%; }
+
+.wordmark { display: flex; flex-direction: column; line-height: 1.1; }
+.name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--ink);
+  letter-spacing: -.02em;
+}
 .sub {
-  font-size: .7rem;
-  letter-spacing: .2em;
+  font-size: .62rem;
+  letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: .25rem;
+  margin-top: 2px;
 }
 
-.title {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--sand);
+.nav {
+  display: flex;
+  gap: 1.5rem;
+  margin-left: auto;
 }
+.nav a {
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--slate);
+  text-decoration: none;
+  transition: color .2s var(--ease);
+}
+.nav a:hover { color: var(--teal); text-decoration: none; }
 
 .badge {
-  margin-left: auto;
-  background: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: .4rem .8rem;
+  border-radius: 100px;
   color: #fff;
-  font-size: .65rem;
-  padding: .3rem .7rem;
-  border-radius: 2px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  align-self: center;
-  transition: background .3s;
+  background: var(--muted);
+  border: 1px solid transparent;
+  transition: background .3s var(--ease);
+  white-space: nowrap;
 }
-.badgeOnline  { background: var(--olive); }
-.badgeOffline { background: var(--red); }
+.badgeOnline  { background: var(--teal); }
+.badgeOffline { background: #94a3b8; }
 
-@media (max-width: 720px) {
-  .header { padding: 1.5rem; }
-  .logoMark { font-size: 2.5rem; }
+.dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: rgba(255,255,255,.9);
+}
+.badgeOnline .dot { animation: pulse 2s var(--ease) infinite; }
+
+@keyframes pulse { 0%,100%{opacity:1; box-shadow:0 0 0 0 rgba(255,255,255,.6)} 50%{opacity:.6; box-shadow:0 0 0 5px rgba(255,255,255,0)} }
+
+@media (max-width: 860px) {
+  .nav { display: none; }
+}
+@media (max-width: 520px) {
+  .sub { display: none; }
+  .header { gap: .75rem; }
 }

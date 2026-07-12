@@ -6,7 +6,6 @@ import { predict, predictBatch } from './api/client';
 import { useApiStatus } from './hooks/useApiStatus';
 
 import Header         from './components/Header';
-import ApiStatus      from './components/ApiStatus';
 import PropertyForm   from './components/PropertyForm';
 import ResultPanel    from './components/ResultPanel';
 import CityComparison from './components/CityComparison';
@@ -60,16 +59,55 @@ export default function App() {
   }
 
   return (
-    <div className="app-wrapper">
+    <div className="app-wrapper" id="top">
       <Header apiStatus={apiStatus} />
-      <main>
-        <ApiStatus status={apiStatus} />
+
+      <section className="hero">
+        <div className="hero-inner">
+          <span className="eyebrow">
+            <span className="eyebrow-dot" /> ML-powered valuation · Tunisia
+          </span>
+          <h1 className="hero-title">
+            Know what a home is <span className="hl">really worth</span>.
+          </h1>
+          <p className="hero-sub">
+            Predictina turns sparse property details into an instant, data-driven market
+            value in TND — then compares the same home across {CITIES.length} Tunisian cities.
+          </p>
+          <div className="hero-stats">
+            <div className="stat">
+              <span className="stat-num">11</span>
+              <span className="stat-label">Cities</span>
+            </div>
+            <div className="stat-sep" />
+            <div className="stat">
+              <span className="stat-num">12</span>
+              <span className="stat-label">Features</span>
+            </div>
+            <div className="stat-sep" />
+            <div className="stat">
+              <span className="stat-num">3</span>
+              <span className="stat-label">ML models</span>
+            </div>
+            <div className="stat-sep" />
+            <div className="stat">
+              <span className="stat-num">0</span>
+              <span className="stat-label">Required fields</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <main id="predictor">
         <div className="grid">
           <PropertyForm   onPredict={handlePredict} loading={predLoading} />
           <ResultPanel    result={result} loading={predLoading} error={predError} />
+        </div>
+        <div id="compare">
           <CityComparison data={cityData} loading={cityLoading} error={cityError} />
         </div>
       </main>
+
       <Footer />
     </div>
   );
