@@ -1,0 +1,81 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]: P.
+    - generic [ref=e6]:
+      - paragraph [ref=e7]: Tunisia Real Estate
+      - paragraph [ref=e8]: Predictina — House Price Intelligence
+    - generic [ref=e9]: API online
+  - main [ref=e10]:
+    - generic [ref=e11]: API connected — ready to predict
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - paragraph [ref=e16]: Property Details
+        - paragraph [ref=e17]: Location
+        - generic [ref=e18]:
+          - generic [ref=e19]:
+            - generic [ref=e20]: City
+            - combobox [ref=e21]:
+              - option "— auto (most common) —" [selected]
+              - option "Tunis"
+              - option "Sousse"
+              - option "Hammamet"
+              - option "Nabeul"
+              - option "Sfax"
+              - option "Bizerte"
+              - option "Monastir"
+              - option "Kairouan"
+              - option "Gafsa"
+              - option "Gabès"
+              - option "Tataouine"
+          - generic [ref=e22]:
+            - generic [ref=e23]: Neighbourhood
+            - textbox "e.g. Lac 2, Menzah…" [ref=e24]
+        - paragraph [ref=e26]: Property
+        - generic [ref=e27]:
+          - generic [ref=e28]:
+            - generic [ref=e29]: Type
+            - combobox [ref=e30]:
+              - option "— auto —" [selected]
+              - option "apartment"
+              - option "house"
+              - option "villa"
+          - generic [ref=e31]:
+            - generic [ref=e32]: Surface (m²)
+            - spinbutton "median" [ref=e33]
+          - generic [ref=e34]:
+            - generic [ref=e35]: Rooms
+            - spinbutton "median" [ref=e36]
+          - generic [ref=e37]:
+            - generic [ref=e38]: Bathrooms
+            - spinbutton "median" [ref=e39]
+          - generic [ref=e40]:
+            - generic [ref=e41]: Floor
+            - spinbutton "median" [ref=e42]
+          - generic [ref=e43]:
+            - generic [ref=e44]: Total Floors
+            - spinbutton "median" [ref=e45]
+          - generic [ref=e46]:
+            - generic [ref=e47]: Year Built
+            - spinbutton "median" [ref=e48]
+        - paragraph [ref=e50]: Amenities
+        - generic [ref=e51]:
+          - generic [ref=e52] [cursor=pointer]:
+            - checkbox "🚗 Parking" [ref=e53]
+            - generic [ref=e54]: 🚗 Parking
+          - generic [ref=e55] [cursor=pointer]:
+            - checkbox "🌿 Garden" [ref=e56]
+            - generic [ref=e57]: 🌿 Garden
+          - generic [ref=e58] [cursor=pointer]:
+            - checkbox "🏊 Pool" [ref=e59]
+            - generic [ref=e60]: 🏊 Pool
+        - button "Estimate Price" [ref=e61] [cursor=pointer]
+      - generic [ref=e62]:
+        - paragraph [ref=e63]: Prediction
+        - generic [ref=e64]:
+          - text: Fill in at least one field and click
+          - strong [ref=e65]: Estimate Price
+          - text: to get a prediction.All fields are optional — missing values are filled with dataset defaults.
+      - generic [ref=e66]:
+        - paragraph [ref=e67]: City Price Index (same property, median defaults)
+        - paragraph [ref=e68]: Run a prediction to see city comparison.
+  - contentinfo [ref=e69]: Predictina v2.0 · Powered by LightGBM / XGBoost / Random Forest · MLflow tracked

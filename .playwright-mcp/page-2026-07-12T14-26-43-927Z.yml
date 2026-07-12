@@ -1,0 +1,125 @@
+- generic [ref=f4e3]:
+  - banner [ref=f4e4]:
+    - link "Predictina House Price Intelligence · Tunisia" [ref=f4e5] [cursor=pointer]:
+      - /url: "#top"
+      - generic [ref=f4e10]:
+        - generic [ref=f4e11]: Predictina
+        - generic [ref=f4e12]: House Price Intelligence · Tunisia
+    - navigation [ref=f4e13]:
+      - link "Predictor" [ref=f4e14] [cursor=pointer]:
+        - /url: "#predictor"
+      - link "City Index" [ref=f4e15] [cursor=pointer]:
+        - /url: "#compare"
+      - link "About" [ref=f4e16] [cursor=pointer]:
+        - /url: "#about"
+    - generic [ref=f4e17]: connecting…
+  - generic [ref=f4e20]:
+    - generic [ref=f4e21]: ML-powered valuation · Tunisia
+    - heading "Know what a home is really worth." [level=1] [ref=f4e23]
+    - paragraph [ref=f4e24]: Predictina turns sparse property details into an instant, data-driven market value in TND — then compares the same home across 11 Tunisian cities.
+    - generic [ref=f4e25]:
+      - generic [ref=f4e26]:
+        - generic [ref=f4e27]: "11"
+        - generic [ref=f4e28]: Cities
+      - generic [ref=f4e30]:
+        - generic [ref=f4e31]: "12"
+        - generic [ref=f4e32]: Features
+      - generic [ref=f4e34]:
+        - generic [ref=f4e35]: "3"
+        - generic [ref=f4e36]: ML models
+      - generic [ref=f4e38]:
+        - generic [ref=f4e39]: "0"
+        - generic [ref=f4e40]: Required fields
+  - main [ref=f4e41]:
+    - generic [ref=f4e42]:
+      - generic [ref=f4e43]:
+        - generic [ref=f4e44]:
+          - paragraph [ref=f4e45]: Property Details
+          - generic [ref=f4e46]: 0 provided
+        - group "Location" [ref=f4e47]:
+          - generic [ref=f4e49]:
+            - generic [ref=f4e50]:
+              - generic [ref=f4e51]: City
+              - combobox "City" [ref=f4e52] [cursor=pointer]:
+                - option "Auto (most common)" [selected]
+                - option "Tunis"
+                - option "Sousse"
+                - option "Hammamet"
+                - option "Nabeul"
+                - option "Sfax"
+                - option "Bizerte"
+                - option "Monastir"
+                - option "Kairouan"
+                - option "Gafsa"
+                - option "Gabès"
+                - option "Tataouine"
+            - generic [ref=f4e53]:
+              - generic [ref=f4e54]: Neighbourhood
+              - textbox "Neighbourhood" [ref=f4e55]:
+                - /placeholder: e.g. Lac 2, Menzah…
+        - group "Property" [ref=f4e56]:
+          - generic [ref=f4e58]:
+            - generic [ref=f4e59]:
+              - generic [ref=f4e60]: Type
+              - combobox "Type" [ref=f4e61] [cursor=pointer]:
+                - option "Auto" [selected]
+                - option "apartment"
+                - option "house"
+                - option "villa"
+            - generic [ref=f4e62]:
+              - generic [ref=f4e63]: Surface (m²)
+              - spinbutton "Surface (m²)" [ref=f4e64]
+            - generic [ref=f4e65]:
+              - generic [ref=f4e66]: Rooms
+              - spinbutton "Rooms" [ref=f4e67]
+            - generic [ref=f4e68]:
+              - generic [ref=f4e69]: Bathrooms
+              - spinbutton "Bathrooms" [ref=f4e70]
+            - generic [ref=f4e71]:
+              - generic [ref=f4e72]: Floor
+              - spinbutton "Floor" [ref=f4e73]
+            - generic [ref=f4e74]:
+              - generic [ref=f4e75]: Total Floors
+              - spinbutton "Total Floors" [ref=f4e76]
+            - generic [ref=f4e77]:
+              - generic [ref=f4e78]: Year Built
+              - spinbutton "Year Built" [ref=f4e79]
+        - group "Amenities" [ref=f4e80]:
+          - generic [ref=f4e82]:
+            - button "Parking" [ref=f4e83] [cursor=pointer]
+            - button "Garden" [ref=f4e87] [cursor=pointer]
+            - button "Pool" [ref=f4e91] [cursor=pointer]
+        - button "Estimate Price" [ref=f4e95] [cursor=pointer]
+        - paragraph [ref=f4e98]: All fields are optional — missing values are auto-filled from the dataset.
+      - generic [ref=f4e99]:
+        - paragraph [ref=f4e103]: Your estimate appears here
+        - paragraph [ref=f4e104]:
+          - text: Fill in at least one field and tap
+          - strong [ref=f4e105]: Estimate Price
+          - text: . Missing values are filled automatically from the dataset.
+    - generic [ref=f4e106]:
+      - generic [ref=f4e108]:
+        - paragraph [ref=f4e109]: What's driving this price
+        - paragraph [ref=f4e110]: How each field you entered lifts or lowers the estimate
+      - paragraph [ref=f4e111]: Enter at least one property field to see what drives the price.
+    - generic [ref=f4e113]:
+      - generic [ref=f4e115]:
+        - paragraph [ref=f4e116]: City Price Index
+        - paragraph [ref=f4e117]: Same property profile, compared across 11 Tunisian cities
+      - paragraph [ref=f4e118]: Run a prediction to see how the same property prices across Tunisia.
+  - contentinfo [ref=f4e119]:
+    - generic [ref=f4e120]:
+      - generic [ref=f4e121]:
+        - generic [ref=f4e122]: Predictina
+        - paragraph [ref=f4e127]: AI-powered house price intelligence for the Tunisian real-estate market.
+      - generic [ref=f4e128]:
+        - paragraph [ref=f4e129]: Engine
+        - paragraph [ref=f4e130]: LightGBM · XGBoost · Random Forest
+        - paragraph [ref=f4e131]: Trained on Tunisian listings · MLflow tracked
+      - generic [ref=f4e132]:
+        - paragraph [ref=f4e133]: Coverage
+        - paragraph [ref=f4e134]: 11 governorates · TND pricing
+        - paragraph [ref=f4e135]: Apartments · Houses · Villas
+    - generic [ref=f4e136]:
+      - generic [ref=f4e137]: © 2026 Predictina · House Price Intelligence
+      - generic [ref=f4e138]: v2.0

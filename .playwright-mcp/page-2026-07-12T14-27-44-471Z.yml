@@ -1,0 +1,319 @@
+- generic [ref=f4e3]:
+  - banner [ref=f4e4]:
+    - link "Predictina House Price Intelligence · Tunisia" [ref=f4e5] [cursor=pointer]:
+      - /url: "#top"
+      - generic [ref=f4e10]:
+        - generic [ref=f4e11]: Predictina
+        - generic [ref=f4e12]: House Price Intelligence · Tunisia
+    - navigation [ref=f4e13]:
+      - link "Predictor" [ref=f4e14] [cursor=pointer]:
+        - /url: "#predictor"
+      - link "City Index" [ref=f4e15] [cursor=pointer]:
+        - /url: "#compare"
+      - link "About" [ref=f4e16] [cursor=pointer]:
+        - /url: "#about"
+    - generic [ref=f4e17]: Model live
+  - generic [ref=f4e20]:
+    - generic [ref=f4e21]: ML-powered valuation · Tunisia
+    - heading "Know what a home is really worth." [level=1] [ref=f4e23]
+    - paragraph [ref=f4e24]: Predictina turns sparse property details into an instant, data-driven market value in TND — then compares the same home across 11 Tunisian cities.
+    - generic [ref=f4e25]:
+      - generic [ref=f4e26]:
+        - generic [ref=f4e27]: "11"
+        - generic [ref=f4e28]: Cities
+      - generic [ref=f4e30]:
+        - generic [ref=f4e31]: "12"
+        - generic [ref=f4e32]: Features
+      - generic [ref=f4e34]:
+        - generic [ref=f4e35]: "3"
+        - generic [ref=f4e36]: ML models
+      - generic [ref=f4e38]:
+        - generic [ref=f4e39]: "0"
+        - generic [ref=f4e40]: Required fields
+  - main [ref=f4e41]:
+    - generic [ref=f4e42]:
+      - generic [ref=f4e43]:
+        - generic [ref=f4e44]:
+          - paragraph [ref=f4e45]: Property Details
+          - generic [ref=f4e46]: 7 provided
+        - group "Location" [ref=f4e47]:
+          - generic [ref=f4e49]:
+            - generic [ref=f4e50]:
+              - generic [ref=f4e51]: City
+              - combobox "City" [ref=f4e52] [cursor=pointer]:
+                - option "Auto (most common)"
+                - option "Tunis" [selected]
+                - option "Sousse"
+                - option "Hammamet"
+                - option "Nabeul"
+                - option "Sfax"
+                - option "Bizerte"
+                - option "Monastir"
+                - option "Kairouan"
+                - option "Gafsa"
+                - option "Gabès"
+                - option "Tataouine"
+            - generic [ref=f4e53]:
+              - generic [ref=f4e54]: Neighbourhood
+              - textbox "Neighbourhood" [ref=f4e55]:
+                - /placeholder: e.g. Lac 2, Menzah…
+                - text: Les Berges du Lac
+        - group "Property" [ref=f4e56]:
+          - generic [ref=f4e58]:
+            - generic [ref=f4e59]:
+              - generic [ref=f4e60]: Type
+              - combobox "Type" [ref=f4e61] [cursor=pointer]:
+                - option "Auto"
+                - option "apartment" [selected]
+                - option "house"
+                - option "villa"
+            - generic [ref=f4e62]:
+              - generic [ref=f4e63]: Surface (m²)
+              - spinbutton "Surface (m²)" [ref=f4e64]: "120"
+            - generic [ref=f4e65]:
+              - generic [ref=f4e66]: Rooms
+              - spinbutton "Rooms" [ref=f4e67]: "3"
+            - generic [ref=f4e68]:
+              - generic [ref=f4e69]: Bathrooms
+              - spinbutton "Bathrooms" [ref=f4e70]: "2"
+            - generic [ref=f4e71]:
+              - generic [ref=f4e72]: Floor
+              - spinbutton "Floor" [ref=f4e73]
+            - generic [ref=f4e74]:
+              - generic [ref=f4e75]: Total Floors
+              - spinbutton "Total Floors" [ref=f4e76]
+            - generic [ref=f4e77]:
+              - generic [ref=f4e78]: Year Built
+              - spinbutton "Year Built" [ref=f4e79]: "2015"
+        - group "Amenities" [ref=f4e80]:
+          - generic [ref=f4e82]:
+            - button "Parking" [ref=f4e83] [cursor=pointer]
+            - button "Garden" [ref=f4e87] [cursor=pointer]
+            - button "Pool" [ref=f4e91] [cursor=pointer]
+        - button "Estimate Price" [ref=f4e95] [cursor=pointer]
+        - paragraph [ref=f4e98]: All fields are optional — missing values are auto-filled from the dataset.
+      - generic [ref=f4e99]:
+        - paragraph [ref=f4e141]: Prediction
+        - generic [ref=f4e142]:
+          - paragraph [ref=f4e143]: Estimated Market Value
+          - paragraph [ref=f4e144]: 311 148 TND
+          - paragraph [ref=f4e145]: ≈ $100,370
+          - paragraph [ref=f4e146]: 2 593 TND / m²
+        - generic [ref=f4e147]:
+          - generic [ref=f4e148]:
+            - generic [ref=f4e149]: Inputs you provided
+            - generic [ref=f4e150]: "7"
+          - paragraph [ref=f4e153]: High-detail estimate — more inputs, tighter prediction.
+        - generic [ref=f4e154]:
+          - paragraph [ref=f4e155]: Your inputs
+          - generic [ref=f4e156]:
+            - generic [ref=f4e157]:
+              - generic [ref=f4e158]: surface
+              - generic [ref=f4e159]: "120"
+            - generic [ref=f4e160]:
+              - generic [ref=f4e161]: rooms
+              - generic [ref=f4e162]: "3"
+            - generic [ref=f4e163]:
+              - generic [ref=f4e164]: bathrooms
+              - generic [ref=f4e165]: "2"
+            - generic [ref=f4e166]:
+              - generic [ref=f4e167]: year_built
+              - generic [ref=f4e168]: "2015"
+            - generic [ref=f4e169]:
+              - generic [ref=f4e170]: location
+              - generic [ref=f4e171]: Les Berges du Lac
+            - generic [ref=f4e172]:
+              - generic [ref=f4e173]: city
+              - generic [ref=f4e174]: Tunis
+            - generic [ref=f4e175]:
+              - generic [ref=f4e176]: property_type
+              - generic [ref=f4e177]: apartment
+        - generic [ref=f4e178]:
+          - paragraph [ref=f4e179]: Auto-filled defaults
+          - generic [ref=f4e180]:
+            - generic [ref=f4e181]:
+              - generic [ref=f4e182]: floor
+              - generic [ref=f4e183]: "0"
+            - generic [ref=f4e184]:
+              - generic [ref=f4e185]: total_floors
+              - generic [ref=f4e186]: "5"
+            - generic [ref=f4e187]:
+              - generic [ref=f4e188]: parking
+              - generic [ref=f4e189]: "false"
+            - generic [ref=f4e190]:
+              - generic [ref=f4e191]: has_garden
+              - generic [ref=f4e192]: "false"
+            - generic [ref=f4e193]:
+              - generic [ref=f4e194]: has_pool
+              - generic [ref=f4e195]: "false"
+    - generic [ref=f4e106]:
+      - generic [ref=f4e107]:
+        - generic [ref=f4e108]:
+          - paragraph [ref=f4e109]: What's driving this price
+          - paragraph [ref=f4e110]: How each field you entered lifts or lowers the estimate
+        - generic [ref=f4e196]: 7 factors
+      - generic [ref=f4e197]:
+        - generic [ref=f4e198]: Adds value
+        - generic [ref=f4e200]: Lowers value
+      - generic [ref=f4e202]:
+        - generic [ref=f4e203]:
+          - generic [ref=f4e208]:
+            - generic [ref=f4e209]: Surface
+            - generic [ref=f4e210]: 120 m²
+          - 'img "Surface 120 m²: lowers 399 787 TND" [ref=f4e211]'
+          - generic [ref=f4e214]:
+            - text: −399 787
+            - generic [ref=f4e215]: TND
+        - generic [ref=f4e216]:
+          - generic [ref=f4e221]:
+            - generic [ref=f4e222]: City
+            - generic [ref=f4e223]: Tunis
+          - 'img "City Tunis: adds 166 335 TND" [ref=f4e224]'
+          - generic [ref=f4e227]:
+            - text: +166 335
+            - generic [ref=f4e228]: TND
+        - generic [ref=f4e229]:
+          - generic [ref=f4e234]:
+            - generic [ref=f4e235]: Property type
+            - generic [ref=f4e236]: apartment
+          - 'img "Property type apartment: lowers 121 798 TND" [ref=f4e237]'
+          - generic [ref=f4e240]:
+            - text: −121 798
+            - generic [ref=f4e241]: TND
+        - generic [ref=f4e242]:
+          - generic [ref=f4e247]:
+            - generic [ref=f4e248]: Year built
+            - generic [ref=f4e249]: "2015"
+          - 'img "Year built 2015: lowers 16 237 TND" [ref=f4e250]'
+          - generic [ref=f4e253]:
+            - text: −16 237
+            - generic [ref=f4e254]: TND
+        - generic [ref=f4e255]:
+          - generic [ref=f4e260]:
+            - generic [ref=f4e261]: Rooms
+            - generic [ref=f4e262]: "3"
+          - 'img "Rooms 3: adds 2 851 TND" [ref=f4e263]'
+          - generic [ref=f4e266]:
+            - text: +2 851
+            - generic [ref=f4e267]: TND
+        - generic [ref=f4e268]:
+          - generic [ref=f4e273]:
+            - generic [ref=f4e274]: Neighbourhood
+            - generic [ref=f4e275]: Les Berges du Lac
+          - 'img "Neighbourhood Les Berges du Lac: adds 908 TND" [ref=f4e276]'
+          - generic [ref=f4e279]:
+            - text: "+908"
+            - generic [ref=f4e280]: TND
+        - generic [ref=f4e281]:
+          - generic [ref=f4e286]:
+            - generic [ref=f4e287]: Bathrooms
+            - generic [ref=f4e288]: "2"
+          - 'img "Bathrooms 2: adds 0 TND" [ref=f4e289]'
+          - generic [ref=f4e292]:
+            - text: "+0"
+            - generic [ref=f4e293]: TND
+      - paragraph [ref=f4e294]: Leave-one-out analysis — each bar shows the price change when that field reverts to its dataset default.
+    - generic [ref=f4e113]:
+      - generic [ref=f4e114]:
+        - generic [ref=f4e115]:
+          - paragraph [ref=f4e116]: City Price Index
+          - paragraph [ref=f4e117]: Same property profile, compared across 11 Tunisian cities
+        - generic [ref=f4e295]: 11 cities
+      - generic [ref=f4e296]:
+        - generic [ref=f4e297]:
+          - generic [ref=f4e298]: "1"
+          - generic [ref=f4e299]: Tunis
+          - generic [ref=f4e300]: 100.0%
+          - generic [ref=f4e303]:
+            - generic [ref=f4e304]: 311 148
+            - generic [ref=f4e305]: TND
+        - generic [ref=f4e306]:
+          - generic [ref=f4e307]: "2"
+          - generic [ref=f4e308]: Nabeul
+          - generic [ref=f4e309]: 79.4%
+          - generic [ref=f4e312]:
+            - generic [ref=f4e313]: 247 167
+            - generic [ref=f4e314]: TND
+        - generic [ref=f4e315]:
+          - generic [ref=f4e316]: "3"
+          - generic [ref=f4e317]: Sousse
+          - generic [ref=f4e318]: 75.0%
+          - generic [ref=f4e321]:
+            - generic [ref=f4e322]: 233 478
+            - generic [ref=f4e323]: TND
+        - generic [ref=f4e324]:
+          - generic [ref=f4e325]: "4"
+          - generic [ref=f4e326]: Hammamet
+          - generic [ref=f4e327]: 71.7%
+          - generic [ref=f4e330]:
+            - generic [ref=f4e331]: 222 940
+            - generic [ref=f4e332]: TND
+        - generic [ref=f4e333]:
+          - generic [ref=f4e334]: "5"
+          - generic [ref=f4e335]: Sfax
+          - generic [ref=f4e336]: 48.6%
+          - generic [ref=f4e339]:
+            - generic [ref=f4e340]: 151 121
+            - generic [ref=f4e341]: TND
+        - generic [ref=f4e342]:
+          - generic [ref=f4e343]: "6"
+          - generic [ref=f4e344]: Gabès
+          - generic [ref=f4e345]: 48.5%
+          - generic [ref=f4e348]:
+            - generic [ref=f4e349]: 151 050
+            - generic [ref=f4e350]: TND
+        - generic [ref=f4e351]:
+          - generic [ref=f4e352]: "7"
+          - generic [ref=f4e353]: Kairouan
+          - generic [ref=f4e354]: 47.6%
+          - generic [ref=f4e357]:
+            - generic [ref=f4e358]: 148 236
+            - generic [ref=f4e359]: TND
+        - generic [ref=f4e360]:
+          - generic [ref=f4e361]: "8"
+          - generic [ref=f4e362]: Tataouine
+          - generic [ref=f4e363]: 47.4%
+          - generic [ref=f4e366]:
+            - generic [ref=f4e367]: 147 402
+            - generic [ref=f4e368]: TND
+        - generic [ref=f4e369]:
+          - generic [ref=f4e370]: "9"
+          - generic [ref=f4e371]: Bizerte
+          - generic [ref=f4e372]: 47.2%
+          - generic [ref=f4e375]:
+            - generic [ref=f4e376]: 146 797
+            - generic [ref=f4e377]: TND
+        - generic [ref=f4e378]:
+          - generic [ref=f4e379]: "10"
+          - generic [ref=f4e380]: Monastir
+          - generic [ref=f4e381]: 46.7%
+          - generic [ref=f4e384]:
+            - generic [ref=f4e385]: 145 406
+            - generic [ref=f4e386]: TND
+        - generic [ref=f4e387]:
+          - generic [ref=f4e388]: "11"
+          - generic [ref=f4e389]: Gafsa
+          - generic [ref=f4e390]: 46.2%
+          - generic [ref=f4e393]:
+            - generic [ref=f4e394]: 143 905
+            - generic [ref=f4e395]: TND
+        - paragraph [ref=f4e396]:
+          - text: "Spread:"
+          - strong [ref=f4e397]: 167 243 TND
+          - text: between most & least expensive city.
+  - contentinfo [ref=f4e119]:
+    - generic [ref=f4e120]:
+      - generic [ref=f4e121]:
+        - generic [ref=f4e122]: Predictina
+        - paragraph [ref=f4e127]: AI-powered house price intelligence for the Tunisian real-estate market.
+      - generic [ref=f4e128]:
+        - paragraph [ref=f4e129]: Engine
+        - paragraph [ref=f4e130]: LightGBM · XGBoost · Random Forest
+        - paragraph [ref=f4e131]: Trained on Tunisian listings · MLflow tracked
+      - generic [ref=f4e132]:
+        - paragraph [ref=f4e133]: Coverage
+        - paragraph [ref=f4e134]: 11 governorates · TND pricing
+        - paragraph [ref=f4e135]: Apartments · Houses · Villas
+    - generic [ref=f4e136]:
+      - generic [ref=f4e137]: © 2026 Predictina · House Price Intelligence
+      - generic [ref=f4e138]: v2.0
