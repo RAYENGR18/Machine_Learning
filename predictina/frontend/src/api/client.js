@@ -24,3 +24,14 @@ export async function predictBatch(requests) {
   if (!r.ok) throw new Error(await r.text());
   return r.json();
 }
+
+export async function recommend(query) {
+  const r = await fetch(`${BASE}/recommend`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query }),
+    signal: AbortSignal.timeout(20000),
+  });
+  if (!r.ok) throw new Error(await r.text());
+  return r.json();
+}

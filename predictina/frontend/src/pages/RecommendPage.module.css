@@ -1,0 +1,96 @@
+.field { display: flex; flex-direction: column; gap: .4rem; margin-bottom: .9rem; }
+
+.textarea {
+  font-family: 'Inter', sans-serif;
+  font-size: .92rem;
+  background: rgba(255,255,255,.7);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-xs);
+  padding: .75rem .9rem;
+  color: var(--ink);
+  resize: vertical;
+  min-height: 84px;
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease), background .2s;
+}
+.textarea:focus {
+  outline: none;
+  border-color: var(--teal-light);
+  box-shadow: var(--focus-ring);
+  background: #fff;
+}
+.textarea::placeholder { color: var(--faint); }
+
+.examples { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.1rem; }
+.exampleChip {
+  font-size: .74rem;
+  font-weight: 500;
+  color: var(--slate);
+  background: rgba(255,255,255,.6);
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  padding: .4rem .85rem;
+  cursor: pointer;
+  transition: all .2s var(--ease);
+}
+.exampleChip:hover { border-color: var(--teal-light); color: var(--teal-dark); background: var(--teal-tint); }
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+.listingCard {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  text-decoration: none;
+  transition: transform .15s var(--ease-out), box-shadow .25s var(--ease);
+  cursor: pointer;
+}
+.listingCard:hover { transform: translateY(-2px); box-shadow: var(--shadow-md), 0 0 0 1px var(--teal-light); }
+
+.listingHead { display: flex; justify-content: space-between; align-items: flex-start; gap: .6rem; }
+.listingTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .92rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.listingPrice {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--teal-dark);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.listingPrice span { font-size: .65rem; font-weight: 500; color: var(--muted); }
+
+.listingLoc {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .78rem;
+  color: var(--slate);
+}
+.listingLoc svg { flex-shrink: 0; color: var(--teal); }
+
+.listingMeta { display: flex; gap: .8rem; font-size: .76rem; color: var(--muted); font-weight: 500; }
+
+.contactBtn {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--teal-dark);
+  background: var(--teal-tint);
+  border-radius: var(--radius-xs);
+  padding: .55rem .8rem;
+}
+.contactBtn svg { width: 15px; height: 15px; }

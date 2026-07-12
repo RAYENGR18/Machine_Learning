@@ -17,6 +17,8 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
+from recommend import recommend as recommend_listings
+
 # ── make src/ importable ───────────────────────────────────────────────
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE_DIR, "src"))
@@ -165,3 +167,27 @@ def predict_batch(requests: list[PredictRequest]):
         price  = float(pipeline.predict(df_row)[0])
         results.append({"predicted_price_TND": round(price, 2)})
     return results
+
+
+# ─────────────────────── NLP recommendation ───────────────────────────
+class RecommendRequest(BaseModel):
+    query: str = Field(..., min_length=3, description="Free-text description of what the user is looking for")
+
+    model_config = {
+        "json_schema_extra": {
+            "example": {"query": "Je cherche un appartement a Sousse, max 300 mille DT, avec piscine et parking"}
+        }
+    }
+
+
+@app.post("/recommend")
+def recommend_endpoint(req: RecommendRequest):
+    """
+    Parse a free-text preference query (price, surface, location, amenities...)
+    and return live-scraped mubawab.tn listings ranked by fit.
+    Each result links to the original ad — that's where the phone number is.
+    """
+    try:
+        return recommend_listings(req.query)
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc))

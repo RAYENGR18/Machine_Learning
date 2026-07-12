@@ -37,8 +37,8 @@ DATA_PATH = os.path.join(BASE_DIR, "data", "fidari.csv")
 MODEL_DIR = os.path.join(BASE_DIR, "models")
 os.makedirs(MODEL_DIR, exist_ok=True)
 
-MLFLOW_URI = os.path.join(BASE_DIR, "mlruns")
-mlflow.set_tracking_uri(f"file://{MLFLOW_URI}")
+MLFLOW_DB_PATH = os.path.join(BASE_DIR, "mlflow.db")
+mlflow.set_tracking_uri(f"sqlite:///{MLFLOW_DB_PATH}")
 mlflow.set_experiment("predictina_house_prices")
 
 
@@ -48,7 +48,7 @@ def evaluate(pipeline, X, y, split: str = "test") -> dict:
     rmse  = np.sqrt(mean_squared_error(y, preds))
     mae   = mean_absolute_error(y, preds)
     r2    = r2_score(y, preds)
-    print(f"  [{split}] RMSE={rmse:,.0f}  MAE={mae:,.0f}  R²={r2:.4f}")
+    print(f"  [{split}] RMSE={rmse:,.0f}  MAE={mae:,.0f}  R2={r2:.4f}")
     return {"rmse": rmse, "mae": mae, "r2": r2}
 
 
@@ -129,11 +129,11 @@ def train():
         "modes":   {c: str(df[c].mode()[0])  for c in CAT_FEATURES},
     }, meta_path)
 
-    print(f"\n✅ Best model : {best_name}  (R²={best_r2:.4f})")
-    print(f"   Pipeline   → {best_path}")
-    print(f"   Meta       → {meta_path}")
+    print(f"\nBest model : {best_name}  (R2={best_r2:.4f})")
+    print(f"   Pipeline : {best_path}")
+    print(f"   Meta     : {meta_path}")
 
-    print("\n📍 Location impact (100m² apartment, 3 rooms):")
+    print("\nLocation impact (100m2 apartment, 3 rooms):")
     for city in ["Tunis", "Sousse", "Sfax", "Tataouine"]:
         sample = pd.DataFrame([{
             "surface": 100, "rooms": 3, "bathrooms": 1,

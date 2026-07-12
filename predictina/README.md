@@ -68,7 +68,6 @@ Train and compare models with MLflow tracking:
 
 ```bash
 cd predictina
-export MLFLOW_TRACKING_URI=file:./mlruns
 python src/train.py \
   --data-path data/house_pricing_raw.csv \
   --experiment-name predictina-house-prices \
@@ -99,7 +98,7 @@ Launch the MLflow UI:
 
 ```bash
 cd predictina
-mlflow ui --backend-store-uri ./mlruns --host 0.0.0.0 --port 5000
+mlflow ui --backend-store-uri sqlite:///mlflow.db --host 0.0.0.0 --port 5000
 ```
 
 Open: http://localhost:5000
