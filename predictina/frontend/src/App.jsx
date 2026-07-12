@@ -8,6 +8,7 @@ import { useApiStatus } from './hooks/useApiStatus';
 import Header         from './components/Header';
 import PropertyForm   from './components/PropertyForm';
 import ResultPanel    from './components/ResultPanel';
+import PriceBreakdown from './components/PriceBreakdown';
 import CityComparison from './components/CityComparison';
 import Footer         from './components/Footer';
 
@@ -24,38 +25,68 @@ export default function App() {
   const [cityLoading, setCityLoading] = useState(false);
   const [cityError,   setCityError]   = useState(null);
 
+  const [breakData,   setBreakData]   = useState(null);
+  const [breakLoading,setBreakLoading]= useState(false);
+  const [breakError,  setBreakError]  = useState(null);
+
   async function handlePredict(payload) {
     setPredLoading(true);
     setPredError(null);
     setCityLoading(true);
     setCityError(null);
+    setBreakLoading(true);
+    setBreakError(null);
 
+    let basePrice;
     try {
       const data = await predict(payload);
       setResult(data);
+      basePrice = data.predicted_price_TND;
     } catch (e) {
       setPredError(e.message || 'Could not connect to API. Make sure FastAPI is running on port 8000.');
       setResult(null);
       setCityLoading(false);
       setCityData(null);
+      setBreakLoading(false);
+      setBreakData(null);
       return;
     } finally {
       setPredLoading(false);
     }
 
-    try {
-      const requests = CITIES.map(city => ({ ...payload, city, location: city }));
-      const results  = await predictBatch(requests);
-      const sorted   = CITIES
-        .map((city, i) => ({ city, price: results[i].predicted_price_TND }))
-        .sort((a, b) => b.price - a.price);
-      setCityData(sorted);
-    } catch {
-      setCityError('Could not load city comparison.');
-      setCityData(null);
-    } finally {
-      setCityLoading(false);
-    }
+    // Parallel: city comparison + leave-one-out impact breakdown
+    const providedFields = Object.keys(payload);
+
+    const cityP = predictBatch(CITIES.map(city => ({ ...payload, city, location: city })))
+      .then(results => {
+        const sorted = CITIES
+          .map((city, i) => ({ city, price: results[i].predicted_price_TND }))
+          .sort((a, b) => b.price - a.price);
+        setCityData(sorted);
+      })
+      .catch(() => { setCityError('Could not load city comparison.'); setCityData(null); })
+      .finally(() => setCityLoading(false));
+
+    const breakP = (providedFields.length === 0)
+      ? Promise.resolve().then(() => { setBreakData(null); setBreakLoading(false); })
+      : predictBatch(providedFields.map(field => {
+          // counterfactual = payload without this one field
+          const cf = { ...payload };
+          delete cf[field];
+          return cf;
+        }))
+          .then(results => {
+            const rows = providedFields.map((field, i) => ({
+              feature: field,
+              userValue: payload[field],
+              impact: basePrice - results[i].predicted_price_TND,
+            }));
+            setBreakData(rows);
+          })
+          .catch(() => { setBreakError('Could not load price breakdown.'); setBreakData(null); })
+          .finally(() => setBreakLoading(false));
+
+    await Promise.all([cityP, breakP]);
   }
 
   return (
@@ -103,6 +134,7 @@ export default function App() {
           <PropertyForm   onPredict={handlePredict} loading={predLoading} />
           <ResultPanel    result={result} loading={predLoading} error={predError} />
         </div>
+        <PriceBreakdown data={breakData} loading={breakLoading} error={breakError} />
         <div id="compare">
           <CityComparison data={cityData} loading={cityLoading} error={cityError} />
         </div>
